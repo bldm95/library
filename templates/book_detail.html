@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block detail %}
+    <div class="book">
+    <a class="btn btn-default" href="{% url 'book_edit' pk=book.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
+        {% if book.image %}
+    <img src="{{ book.image.url }}"  height="500" width="540" alt="" class="img-responsive">
+        {% endif %}
+        <h2>Название: {{ book.name }}</h2>
+        <h3>Автор: {{ book.author }}</h3>
+        <p>Год публикации: {{ book.year_of_publication }}</p>
+        <p>Описание: {{ book.description }}</p>
+    </div>
+{% endblock %}

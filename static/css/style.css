@@ -1,0 +1,82 @@
+
+
+body {
+    background-size: cover;
+
+}
+
+@media screen and (max-width: 767px){
+     .masonry[data-columns]::before{
+         content: '1 .col-xs-12' ;
+     }
+}
+
+@media screen and (min-width: 768px) and (max-width: 991px){
+     .masonry[data-columns]::before{
+         content: '2 .col-xs-6' ;
+     }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px){
+     .masonry[data-columns]::before{
+         content: '3 .col-xs-4' ;
+     }
+}
+
+@media screen and (min-width: 1200px){
+     .masonry[data-columns]::before{
+         content: '4 .col-xs-3' ;
+     }
+}
+
+.pagination li a {
+    color: #419641;
+}
+
+.footer li a {
+    color: #0f0f0f;
+ background: yellow;
+}
+
+
+.item_team .thumbnail {
+    background: #ffbb33;
+    border:0;
+    box-shadow:0 0 30px black;
+        }
+
+.item_news .thumbnail {
+    background: white;
+    border:0;
+    box-shadow:0 0 30px black;
+        }
+
+.item_tournaments .thumbnail{
+    background: #4285F4;
+    border:0;
+    box-shadow:0 0 30px black;
+}
+
+.item_coach .thumbnail {
+    background: #ffff00;
+    border:0;
+    box-shadow:0 0 30px black;
+        }
+
+.item_player .thumbnail {
+    background: #4fc3f7;
+    border:0;
+    box-shadow:0 0 30px black;
+        }
+
+.item_news_text .thumbnail {
+    background: #71f77e;
+    border:0;
+    box-shadow:0 0 30px black;
+        }
+
+.hide_on_mobile .th { display: inline; }
+/* Smartphone Portrait and Landscape */
+@media only screen
+and (min-device-width : 320px)
+and (max-device-width : 480px){ .hide_on_mobile { display: none; }}

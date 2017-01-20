@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block content %}
+    {% for book in books %}
+        <div class="item_book">
+            <div class="thumbnail">
+                {% if book.image %}
+                <a href="#">
+                    <img src="{{ book.image.url }}"  alt="" class="img-responsive" >
+                </a>
+                {% endif %}
+                <p>Автор: {{ book.author }}</p>
+                <p>Дата публикации: {{ book.year_of_publication }}</p>
+                <div class="caption">
+                    <h3><a href="#"></a></h3>
+                    <p></p>
+                    <a href="{% url 'book_detail' pk=book.pk %}" class="btn btn-success">Подробнее <i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock content %}
