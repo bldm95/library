@@ -10,5 +10,7 @@
         <h3>Автор: {{ book.author }}</h3>
         <p>Год публикации: {{ book.year_of_publication }}</p>
         <p>Описание: {{ book.description }}</p>
+        <a class="btn btn-default" href="{% url 'book_delete' pk=book.pk %}">удалить</a>
+
     </div>
 {% endblock %}

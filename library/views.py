@@ -1,9 +1,10 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, render_to_response, redirect
 from django.http import HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.shortcuts import render, get_object_or_404
 from .models import Book
-from .forms import BookForm
+from .forms import BookForm, DeleteBookForm
 
 
 def xhr_test(request):
@@ -40,9 +41,9 @@ def book_new(request):
     if request.method == "POST":
         form = BookForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('book_detail', pk=post.pk)
+            book = form.save(commit=True)
+            book.save()
+            return redirect('book_detail', pk=book.pk)
     else:
         form = BookForm()
     return render(request, 'book_edit.html', {'form': form})
@@ -53,9 +54,21 @@ def book_edit(request, pk):
     if request.method == "POST":
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
-            post = form.save(commit=False)
-            post.save()
-            return redirect('book_detail', pk=post.pk)
+            book = form.save(commit=False)
+            book.save()
+            return redirect('book_detail', pk=book.pk)
     else:
         form = BookForm(instance=book)
     return render(request, 'book_edit.html', {'form': form})
+
+
+def delete(request, pk):
+    book_to_delete = get_object_or_404(Book, id=pk)
+    if request.method == 'POST':
+        form = DeleteBookForm(request.POST, instance=book_to_delete)
+        if form.is_valid():
+            book_to_delete.delete()
+            return HttpResponseRedirect("/")
+    else:
+        form = DeleteBookForm(instance=book_to_delete)
+    return render(request, 'books_list.html', {'form': form})
